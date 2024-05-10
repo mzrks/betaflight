@@ -1664,6 +1664,23 @@ static void osdElementTimer(osdElementParms_t *element)
     osdFormatTimer(element->buff, true, true, element->item - OSD_ITEM_TIMER_1);
 }
 
+static void osdElementInitiationBoardInfo(osdElementParms_t *element)
+{
+    statistic_t *stats = osdGetStats();
+    timeUs_t armed_time = stats->armed_time;
+    element->attr = DISPLAYPORT_SEVERITY_CRITICAL;
+
+    const int seconds = time / 1000000;
+    const int left = 120 - seconds;
+
+    if (left > 0){
+        tfp_sprintf(element->buff, "INITIATION IN %02d", left);
+    }
+    else{
+        tfp_sprintf(element->buff, "INITIATIATED");
+    }
+}
+
 #ifdef USE_VTX_COMMON
 static void osdElementVtxChannel(osdElementParms_t *element)
 {
@@ -1782,6 +1799,7 @@ static const uint8_t osdElementDisplayOrder[] = {
     OSD_UP_DOWN_REFERENCE,
     OSD_ITEM_TIMER_1,
     OSD_ITEM_TIMER_2,
+    OSD_INITIATION_BOARD_INFO,
     OSD_REMAINING_TIME_ESTIMATE,
     OSD_FLYMODE,
     OSD_THROTTLE_POS,
@@ -1885,6 +1903,7 @@ const osdElementDrawFn osdElementDrawFunction[OSD_ITEM_COUNT] = {
     [OSD_HORIZON_SIDEBARS]        = NULL,  // only has background
     [OSD_ITEM_TIMER_1]            = osdElementTimer,
     [OSD_ITEM_TIMER_2]            = osdElementTimer,
+    [OSD_INITIATION_BOARD_INFO]   = osdElementInitiationBoardInfo,
     [OSD_FLYMODE]                 = osdElementFlymode,
     [OSD_CRAFT_NAME]              = NULL,  // only has background
     [OSD_THROTTLE_POS]            = osdElementThrottlePosition,
