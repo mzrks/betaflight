@@ -1666,15 +1666,12 @@ static void osdElementTimer(osdElementParms_t *element)
 
 static void osdElementInitiationBoardInfo(osdElementParms_t *element)
 {
-    statistic_t *stats = osdGetStats();
-    timeUs_t armed_time = stats->armed_time;
-    element->attr = DISPLAYPORT_SEVERITY_CRITICAL;
-
-    const int seconds = time / 1000000;
+    timeUs_t armed_time = osdFlyTime;
+    const int seconds = armed_time / 1000000;
     const int left = 120 - seconds;
 
     if (left > 0){
-        tfp_sprintf(element->buff, "INITIATION IN %02d", left);
+        tfp_sprintf(element->buff, "INIT IN %02ds", left);
     }
     else{
         tfp_sprintf(element->buff, "INITIATIATED");
