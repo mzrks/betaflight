@@ -1671,10 +1671,17 @@ static void osdElementInitiationBoardInfo(osdElementParms_t *element)
     const int left = 120 - seconds;
 
     if (left > 0){
-        tfp_sprintf(element->buff, "INIT IN %02ds", left);
+        tfp_sprintf(element->buff, "INIT %02d", left);
+        element->attr = DISPLAYPORT_SEVERITY_INFO;
     }
-    else{
-        tfp_sprintf(element->buff, "INITIATIATED");
+    else if (IS_RC_MODE_ACTIVE(BOXUSER1))
+    {
+        tfp_sprintf(element->buff, "READY");
+        element->attr = DISPLAYPORT_SEVERITY_CRITICAL;
+    }
+    else {
+        tfp_sprintf(element->buff, "SAFETY");
+        element->attr = DISPLAYPORT_SEVERITY_WARNING;
     }
 }
 
