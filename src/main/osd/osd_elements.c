@@ -1803,7 +1803,7 @@ static const uint8_t osdElementDisplayOrder[] = {
     OSD_UP_DOWN_REFERENCE,
     OSD_ITEM_TIMER_1,
     OSD_ITEM_TIMER_2,
-    OSD_INITIATION_BOARD_INFO,
+    OSD_INIT_BOARD_INFO,
     OSD_REMAINING_TIME_ESTIMATE,
     OSD_FLYMODE,
     OSD_THROTTLE_POS,
@@ -1907,7 +1907,7 @@ const osdElementDrawFn osdElementDrawFunction[OSD_ITEM_COUNT] = {
     [OSD_HORIZON_SIDEBARS]        = NULL,  // only has background
     [OSD_ITEM_TIMER_1]            = osdElementTimer,
     [OSD_ITEM_TIMER_2]            = osdElementTimer,
-    [OSD_INITIATION_BOARD_INFO]   = osdElementInitiationBoardInfo,
+    [OSD_INIT_BOARD_INFO]   = osdElementInitiationBoardInfo,
     [OSD_FLYMODE]                 = osdElementFlymode,
     [OSD_CRAFT_NAME]              = NULL,  // only has background
     [OSD_THROTTLE_POS]            = osdElementThrottlePosition,
