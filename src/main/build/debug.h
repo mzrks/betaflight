@@ -122,6 +122,7 @@ typedef enum {
     DEBUG_TPA,
     DEBUG_S_TERM,
     DEBUG_SPA,
+    DEBUG_INIT_BOARD,
     DEBUG_COUNT
 } debugType_e;
 
