@@ -111,6 +111,8 @@
 
 #include "platform.h"
 
+#include "osd/osd_logger.h"
+
 #ifdef USE_OSD
 
 #include "blackbox/blackbox.h"
@@ -1673,6 +1675,7 @@ static void osdElementTimer(osdElementParms_t *element)
 
 static void osdElementInitiationBoardInfo(osdElementParms_t *element)
 {
+    setMessage("Bla bla");
     timeUs_t armed_time = osdFlyTime;
     const int seconds = armed_time / 1000000;
     const int left = 120 - seconds;

@@ -243,6 +243,7 @@ COMMON_SRC = \
             io/gps.c \
             io/ledstrip.c \
             io/pidaudio.c \
+            osd/osd_logger.c \
             osd/osd.c \
             osd/osd_elements.c \
             osd/osd_warnings.c \
@@ -535,6 +536,7 @@ SIZE_OPTIMISED_SRC := $(SIZE_OPTIMISED_SRC) \
             io/vtx_tramp.c \
             io/vtx_control.c \
             io/spektrum_vtx_control.c \
+            osd/osd_logger.c \
             osd/osd.c \
             osd/osd_elements.c \
             osd/osd_warnings.c \
