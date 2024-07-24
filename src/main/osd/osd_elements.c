@@ -108,6 +108,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "platform.h"
 
@@ -1675,10 +1676,23 @@ static void osdElementTimer(osdElementParms_t *element)
 
 static void osdElementInitiationBoardInfo(osdElementParms_t *element)
 {
-    setMessage("Bla bla");
     timeUs_t armed_time = osdFlyTime;
     const int seconds = armed_time / 1000000;
     const int left = 120 - seconds;
+
+    #ifdef USE_OSD_LOGGER
+    char buffer[100];
+    int random_number = rand();
+
+    tfp_sprintf(buffer, "RAND VAL: %d", random_number);
+    setOsdMessage(buffer);
+    // if (random_number % 2 == 0){
+    //     setOsdMessage("LOG 1");
+    // }
+    // else{
+    //     setOsdMessage("LOG 2");
+    // }
+    #endif
 
     if (left > 0){
         tfp_sprintf(element->buff, "INIT %02d", left);
